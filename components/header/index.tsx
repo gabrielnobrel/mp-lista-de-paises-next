@@ -4,7 +4,7 @@ import { APP_NAME } from "@/lib/constants";
 
 const Header = () => {
   return (
-    <header className="flex h-12 w-full items-center bg-white px-80">
+    <header className="flex h-12 w-full items-center bg-white px-60">
       <div>
         <Link href="/" className="flex-start flex items-center">
           <Image
