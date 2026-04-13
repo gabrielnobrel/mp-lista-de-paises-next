@@ -100,7 +100,7 @@ export type Country = {
 };
 
 export type CountryListDTO = {
-  flags: Pick<Flags, "png">;
+  flags: Pick<Flags, "svg">;
   name: Pick<Name, "common">;
 };
 
