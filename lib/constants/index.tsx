@@ -4,3 +4,5 @@ export const APP_DESCRIPTION =
   "A modern ecommerce store built with Next.js";
 export const SERVER_URL =
   process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
+export const ITEMS_PER_PAGE =
+  Number(process.env.NEXT_PUBLIC_ITEMS_PER_PAGE) || 20;
