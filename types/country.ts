@@ -106,5 +106,11 @@ export type CountryListDTO = {
 
 export type CountryDetailDTO = Pick<
   Country,
-  "capital" | "subregion" | "population" | "languages" | "flags" | "name"
+  | "capital"
+  | "subregion"
+  | "population"
+  | "languages"
+  | "flags"
+  | "name"
+  | "borders"
 >;
