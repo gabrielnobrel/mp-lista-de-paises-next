@@ -3,7 +3,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --text-title-lg: 2rem;
+  --text-title-lg: 6rem;
   --text-title-md: 1rem;
   --text-title-sm: 0.8rem;
 
