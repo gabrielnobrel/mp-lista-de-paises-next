@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <div className="flex h-screen flex-col">
       <Header />
-      <main className="wrapper flex-1 px-60 py-10">{children}</main>
+      <main className="wrapper flex-1 overflow-y-auto px-60 py-10">{children}</main>
     </div>
   );
 }
