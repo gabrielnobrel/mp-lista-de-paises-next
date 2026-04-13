@@ -31,3 +31,16 @@ export const getCountryByName = async (
     return [];
   }
 };
+
+export const getBordersCountry = async (
+  codes: string[],
+): Promise<CountryListDTO[]> => {
+  try {
+    const response = await fetch(`${url}/alpha?codes=${codes.join(",")}`);
+
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
