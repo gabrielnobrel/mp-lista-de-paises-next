@@ -20,10 +20,10 @@ const CountryDetails = ({
         <ArrowLeft size={14} /> Voltar
       </Link>
 
-      <Card className="flex-row items-center justify-between gap-8 p-6">
-        <div className="flex flex-col gap-2">
+      <Card className="flex flex-col items-center gap-8 p-6 md:flex-row md:justify-between">
+        <div className="flex w-full flex-col gap-2">
           {data.map((detail) => (
-            <div key={detail.label} className="flex items-center gap-2">
+            <div key={detail.label} className="flex flex-wrap items-center gap-2">
               {detail.icon}
 
               <span className="font-bold">{detail.label}:</span>
@@ -42,7 +42,7 @@ const CountryDetails = ({
           alt={`Flag of ${country}`}
           width={275}
           height={459}
-          className="rounded-xl object-cover"
+          className="w-full rounded-xl object-cover md:w-68.75"
           loading="eager"
         />
       </Card>

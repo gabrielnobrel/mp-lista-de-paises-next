@@ -4,7 +4,7 @@ import { APP_NAME } from "@/lib/constants";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 z-10 flex h-12 w-full items-center bg-white px-60">
+    <header className="sticky top-0 z-10 flex h-12 w-full items-center bg-white px-4 sm:px-8 md:px-16 lg:px-60">
       <div>
         <Link href="/" className="flex-start flex items-center">
           <Image
