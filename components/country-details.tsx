@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { Card } from "./ui/card";
 import Image from "next/image";
+import { Badge } from "./ui/badge";
 
 const CountryDetails = ({
   details: { country, flag, data },
@@ -24,9 +25,14 @@ const CountryDetails = ({
           {data.map((detail) => (
             <div key={detail.label} className="flex items-center gap-2">
               {detail.icon}
+
               <span className="font-bold">{detail.label}:</span>
 
-              {detail.value}
+              {detail.type === "badge" ? (
+                <Badge variant="default">{detail.value}</Badge>
+              ) : (
+                detail.value
+              )}
             </div>
           ))}
         </div>
@@ -37,6 +43,7 @@ const CountryDetails = ({
           width={275}
           height={459}
           className="rounded-xl object-cover"
+          loading="eager"
         />
       </Card>
     </>
