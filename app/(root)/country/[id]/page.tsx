@@ -5,7 +5,7 @@ import {
   getCountryByName,
 } from "@/data-access/get-countries";
 import { buildCountryDetails } from "@/lib/utils/country-details";
-import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export const metadata = {
   title: "Detalhes do País",
@@ -15,8 +15,15 @@ const Country = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
 
   const country = await getCountryByName(id);
+
+  if (!country) {
+    notFound();
+  }
+
   const details = buildCountryDetails(country[0]);
-  const borders = await getBordersCountry(country[0].borders);
+  const borders = country[0].borders?.length
+    ? await getBordersCountry(country[0].borders)
+    : [];
 
   return (
     <>
@@ -24,9 +31,11 @@ const Country = async ({ params }: { params: Promise<{ id: string }> }) => {
         <CountryDetails details={details} />
       </section>
 
-      <section className="mt-2">
-        <CountriesBorders borders={borders} />
-      </section>
+      {borders.length > 0 && (
+        <section className="mt-2">
+          <CountriesBorders borders={borders} />
+        </section>
+      )}
     </>
   );
 };
