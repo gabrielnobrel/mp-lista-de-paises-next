@@ -24,8 +24,9 @@ export const getCountryByName = async (
   try {
     const response = await fetch(`${url}/name/${name}`);
 
-    const data = await response.json();
-    return data;
+    if (!response.ok) return [];
+
+    return await response.json();
   } catch (error) {
     console.error(error);
     return [];
@@ -38,6 +39,7 @@ export const getBordersCountry = async (
   try {
     const response = await fetch(`${url}/alpha?codes=${codes.join(",")}`);
 
+    if (!response.ok) return [];
     return await response.json();
   } catch (error) {
     console.error(error);
