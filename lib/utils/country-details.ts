@@ -18,7 +18,7 @@ export function buildCountryDetails(
   country: CountryDetailDTO,
 ): CountryDetailsResult {
   return {
-    country: country.name.common ?? "-",
+    country: country.name.common,
     flag: country.flags.svg,
     data: [
       { label: "Capital", value: country.capital, icon: "🏙️", type: "text" },
