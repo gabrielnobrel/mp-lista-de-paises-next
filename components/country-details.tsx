@@ -29,7 +29,11 @@ const CountryDetails = ({
               <span className="font-bold">{detail.label}:</span>
 
               {detail.type === "badge" ? (
-                <Badge variant="default">{detail.value}</Badge>
+                detail.value.map((lang) => (
+                  <Badge key={lang.name} variant="default">
+                    {lang.name}
+                  </Badge>
+                ))
               ) : (
                 detail.value
               )}
@@ -40,8 +44,8 @@ const CountryDetails = ({
         <Image
           src={flag}
           alt={`Flag of ${country}`}
-          width={275}
-          height={459}
+          width={200}
+          height={400}
           className="w-full rounded-xl object-cover md:w-68.75"
           loading="eager"
         />

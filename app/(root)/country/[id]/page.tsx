@@ -25,6 +25,7 @@ const Country = async ({ params }: { params: Promise<{ id: string }> }) => {
     ? await getBordersCountry(country[0].borders)
     : [];
 
+
   return (
     <>
       <section className="container w-full rounded-xl">

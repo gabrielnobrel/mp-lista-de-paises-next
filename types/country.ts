@@ -1,20 +1,20 @@
 type NativeName = {
   [languageCode: string]: {
-    official: string;
     common: string;
+    official: string;
   };
 };
 
 type Flags = {
-  png: string;
-  svg: string;
-  alt: string;
+  url_png: string;
+  url_svg: string;
+  description: string;
 };
 
 type Name = {
   common: string;
   official: string;
-  nativeName: NativeName;
+  native: NativeName;
 };
 
 type Idd = {
@@ -49,7 +49,7 @@ type Translation = {
 
 type CoatOfArms = {
   png: string;
-  svg: string;
+  url_svg: string;
 };
 
 type CapitalInfo = {
@@ -71,7 +71,7 @@ export type Country = {
   status: string;
   unMember: boolean;
   idd: Idd;
-  capital: string[];
+  capitals: { name: string }[];
   altSpellings: string[];
   region: string;
   subregion: string;
@@ -84,10 +84,12 @@ export type Country = {
   car: Car;
   timezones: string[];
   continents: string[];
-  flag: string;
-  name: Name;
+  flag: {
+    url_svg: string;
+  };
+  names: Name;
   currencies: { [code: string]: Currency };
-  languages: { [code: string]: string };
+  languages: { name: string }[];
   latlng: [number, number];
   demonyms: { [languageCode: string]: Demonym };
   translations: { [languageCode: string]: Translation };
@@ -100,17 +102,17 @@ export type Country = {
 };
 
 export type CountryListDTO = {
-  flags: Pick<Flags, "svg">;
-  name: Pick<Name, "common">;
+  names: Pick<Name, "common">;
+  flag: Pick<Flags, "url_svg">;
 };
 
 export type CountryDetailDTO = Pick<
   Country,
-  | "capital"
+  | "capitals"
   | "subregion"
   | "population"
   | "languages"
-  | "flags"
-  | "name"
+  | "flag"
+  | "names"
   | "borders"
 >;

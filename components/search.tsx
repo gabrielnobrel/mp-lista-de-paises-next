@@ -13,10 +13,11 @@ const Search = () => {
       const params = new URLSearchParams(searchParams);
 
       if (event.target.value) {
-        params.set("search", event.target.value);
+        params.set("q", event.target.value);
       } else {
-        params.delete("search");
+        params.delete("q");
       }
+      params.set("page", "1");
 
       replace(`${pathname}?${params.toString()}`);
     },
@@ -26,7 +27,7 @@ const Search = () => {
   return (
     <Input
       placeholder="Pesquisar"
-      defaultValue={searchParams.get("search") ?? ""}
+      defaultValue={searchParams.get("q") ?? ""}
       onChange={(e) => handleChange(e)}
     />
   );

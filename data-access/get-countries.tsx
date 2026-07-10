@@ -1,17 +1,15 @@
 "use server";
 
+import { get } from "@/lib/api";
 import type { CountryDetailDTO, CountryListDTO } from "@/types/country";
 
-const url = process.env.API_URL;
-
-export const getCountries = async (): Promise<CountryListDTO[]> => {
+export const getCountries = async (query: string): Promise<CountryListDTO[]> => {
   try {
-    const response = await fetch(`${url}/all?fields=name,flags`, {
+    const data = await get<CountryListDTO[]>(query, {
       cache: "force-cache",
     });
 
-    const data = await response.json();
-    return data;
+    return data ?? [];
   } catch (error) {
     console.error(error);
     return [];
@@ -22,11 +20,10 @@ export const getCountryByName = async (
   name: string,
 ): Promise<CountryDetailDTO[]> => {
   try {
-    const response = await fetch(`${url}/name/${name}`);
-
-    if (!response.ok) return [];
-
-    return await response.json();
+    const data = await get<CountryDetailDTO[]>(
+      `?names.common=${encodeURIComponent(name)}`,
+    );
+    return data ?? [];
   } catch (error) {
     console.error(error);
     return [];
@@ -37,10 +34,10 @@ export const getBordersCountry = async (
   codes: string[],
 ): Promise<CountryListDTO[]> => {
   try {
-    const response = await fetch(`${url}/alpha?codes=${codes.join(",")}`);
-
-    if (!response.ok) return [];
-    return await response.json();
+    const data = await get<CountryListDTO[]>(
+      `/alpha?codes=${codes.join(",")}`,
+    );
+    return data ?? [];
   } catch (error) {
     console.error(error);
     return [];

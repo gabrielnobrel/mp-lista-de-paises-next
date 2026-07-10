@@ -1,12 +1,9 @@
 import type { CountryDetailDTO } from "@/types/country";
 import { formatPopulation } from "./formatters";
 
-export type CountryDetail = {
-  label: string;
-  value: string | string[];
-  icon: string;
-  type: "text" | "badge";
-};
+export type CountryDetail =
+  | { label: string; value: string | string[]; icon: string; type: "text" }
+  | { label: string; value: { name: string }[]; icon: string; type: "badge" };
 
 export type CountryDetailsResult = {
   country: string;
@@ -18,10 +15,10 @@ export function buildCountryDetails(
   country: CountryDetailDTO,
 ): CountryDetailsResult {
   return {
-    country: country.name.common,
-    flag: country.flags.svg,
+    country: country.names?.common ?? "-",
+    flag: country.flag?.url_svg ?? "/images/flag-placeholder.svg",
     data: [
-      { label: "Capital", value: country.capital, icon: "🏙️", type: "text" },
+      { label: "Capital", value: country.capitals?.[0]?.name ?? "-", icon: "🏙️", type: "text" },
       {
         label: "Continente",
         value: country.subregion,
@@ -36,7 +33,7 @@ export function buildCountryDetails(
       },
       {
         label: "Línguas faladas",
-        value: Object.values(country.languages),
+        value: country.languages ?? [],
         icon: "💬",
         type: "badge",
       },
